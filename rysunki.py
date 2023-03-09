@@ -6,6 +6,9 @@ def wykres_funkcji(funkcja,a,b,x1,x2):
     help = np.linspace(a,b)
     wartosci = funkcja(help)
     help2 = np.linspace(wartosci.min(),wartosci.max())
+
+    zero = np.zeros((len(help),1))
+
     z = np.zeros((len(wartosci), 1))
     z += x1
     y = np.zeros((len(wartosci), 1))
@@ -14,6 +17,7 @@ def wykres_funkcji(funkcja,a,b,x1,x2):
     plt.plot(help,wartosci,label='zadana funkcja')
     plt.plot(z,help2,linestyle = 'dashed',color='black',label='miejsce zerowe uzyskane metodą bisekcji')
     plt.plot(y,help2, linestyle='dashed', color='red',label='miejsce zerowe uzyskane metodą stycznych')
+    plt.plot(help,zero,color='black')
     plt.xlabel("OŚ X")
     plt.ylabel("OŚ Y")
     plt.title("Wykres funkcji i jej znalezione miejsce zerowe")
