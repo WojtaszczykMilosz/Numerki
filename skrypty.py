@@ -46,6 +46,7 @@ class Obliczenia:
             xN1 = xN - (funkcja(xN)/pochodna(xN))
             iteracja -= 1
             if abs(funkcja(xN1)) < epsilon:
+
                 self.iteracjestyczne = abs(iteracja)
                 return xN1
             elif iteracja == 0:

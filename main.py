@@ -1,37 +1,79 @@
 import skrypty as sk
-import numpy as np
+import funkcje as fun
 import rysunki as r
 import funkcje as fun
 
-dict = {"1":sk.Obliczenia.horner}
-def menu():
-    x = 1
-    while x != 0:
-        print("Wybierz funkcje:")
-        print("1: ")
-        print("2: ")
-        print("3: ")
-        print("0: wyjscie")
-        x = input()
-        dict['1'](0, [1, 1, 1])
-        try:
-            x = int(x)
-        except:
-            x = 0
+dict = {"1": (fun.cosinus,fun.cosinus_pochodna,fun.cosinus_pochodna2),
+        "2": (fun.wykładnicza,fun.wykładnicza_pochodna,fun.wykładnicza_pochodna2),
+        "3": (fun.złożenie,fun.złożenie_pochodna,fun.złożenie_pochodna2)}
 
-        if x != 0:
+
+
+def wczytaj_wielomian():
+    print("Podaj stopien wielomianu: ", end='')
+    stopien = input()
+    tab = []
+    for i in range(int(stopien)):
+        print(f"Podaj wartosc {i + 1} wspolczynnika: ", end=' ')
+        wsp = input()
+        wsp = int(wsp)
+        tab.append(wsp)
+    return tab
+
+def menu():
+    wybor = 1
+    while wybor != '0':
+        print("Wybierz funkcje:")
+        print("1: cos(2x) - 1.5x")
+        print("2: 2^x - 6")
+        print("3: 3^sin(x) - 2")
+        print("4: wielomian")
+        print("0: wyjscie")
+        wybor = input()
+
+        try:
+            int(wybor)
+        except:
+            wybor = '0'
+
+        if wybor != '0':
+            if wybor == '4':
+                tab = wczytaj_wielomian()
+                wielomian = fun.Wielomian(tab)
+                pochodna = fun.Wielomian(wielomian.pochodna())
+                funkcje = (wielomian.wartosc,pochodna.wartosc,pochodna.pochodna_wartosc)
+
+            else:
+                funkcje = dict[wybor]
+
+
+
+
             print("Podaj przedział [a,b] na którym poszukiwane jest miejsce zerowe")
             print("a:",end=' ')
-            a = input()
+            a = int(input())
             print("b:",end=' ')
-            b = input()
+            b = int(input())
 
             print("Wybierz kryterium zatrzymania algorytmu")
             print("1) |f(x)| < e.")
             print("2) Osiągnięcie zadanej liczby iteracji.")
             warunek = input()
 
-            # r.wykres_funkcji()
+            print("Podaj wartość e/liczby iteracji")
+            wartosc = input()
+
+            if warunek == '1':
+                epsilon = float(wartosc)
+                iteracja = 0
+            elif warunek == '2':
+                epsilon = 0
+                iteracja = float(wartosc)
+            # x1 = sk.Obliczenia.bisekcja(funkcje[0], a, b, epsilon, iteracja)
+            ob = sk.Obliczenia()
+            x2 = ob.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, epsilon, iteracja)
+
+            r.wykres_funkcji(funkcje[0],a,b,x2,x2)
             print("Naciśnij klawisz aby kontynuować")
             input()
 
