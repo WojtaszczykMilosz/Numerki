@@ -50,9 +50,9 @@ def menu():
 
             print("Podaj przedział [a,b] na którym poszukiwane jest miejsce zerowe")
             print("a:",end=' ')
-            a = input()
+            a = int(input())
             print("b:",end=' ')
-            b = input()
+            b = int(input())
 
             print("Wybierz kryterium zatrzymania algorytmu")
             print("1) |f(x)| < e.")
@@ -62,11 +62,17 @@ def menu():
             print("Podaj wartość e/liczby iteracji")
             wartosc = input()
 
+            if warunek == '1':
+                epsilon = float(wartosc)
+                iteracja = 0
+            elif warunek == '2':
+                epsilon = 0
+                iteracja = float(wartosc)
+            # x1 = sk.Obliczenia.bisekcja(funkcje[0], a, b, epsilon, iteracja)
+            ob = sk.Obliczenia()
+            x2 = ob.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, epsilon, iteracja)
 
-            x1 = sk.Obliczenia.bisekcja(funkcje[0], a, b, warunek, wartosc)
-            x2 = sk.Obliczenia.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, warunek,wartosc)
-
-            r.wykres_funkcji(funkcje[0],a,b,x1,x2)
+            r.wykres_funkcji(funkcje[0],a,b,x2,x2)
             print("Naciśnij klawisz aby kontynuować")
             input()
 

@@ -1,10 +1,6 @@
 class Obliczenia:
 
-    def __init__(self, funkcja, kryterium, wartosc):
-        self.tab = funkcja
-        self.kryterium = kryterium
-        self.wartosc = wartosc
-    #     self.ustaw_kryterium()
+
 
     def ustaw_kryterium(self):
         if self.kryterium:
@@ -49,9 +45,11 @@ class Obliczenia:
         else:
             return None
         while True:
-            xN1 = xN - (pochodna(xN)/pochodna2(xN))
-
-            if xN1 < epsilon:
+            xN1 = xN - (funkcja(xN)/pochodna(xN))
+            iteracja -= 1
+            if abs(funkcja(xN1)) < epsilon:
+                return xN1
+            elif iteracja == 0:
                 return xN1
             else:
                 xN = xN1
