@@ -23,7 +23,7 @@ class Obliczenia:
         wartosc = tab[0]
 
         for a in range(1,len(tab)):
-            wartosc += wartosc*x + tab[a]
+            wartosc = wartosc*x + tab[a]
         return wartosc
 
     def bisekcja(self,funckja,a,b,epsilon):
