@@ -1,21 +1,46 @@
 import skrypty as sk
+import numpy as np
+import rysunki as r
+
+dict = {"1":sk.Obliczenia.horner}
+def menu():
+    x = 1
+    while x != 0:
+        print("Wybierz funkcje:")
+        print("1: ")
+        print("2: ")
+        print("3: ")
+        print("0: wyjscie")
+        x = input()
+        dict['1'](0, [1, 1, 1])
+        try:
+            x = int(x)
+        except:
+            x = 0
+
+        if x != 0:
+            print("Podaj przedział [a,b] na którym poszukiwane jest miejsce zerowe")
+            print("a:",end=' ')
+            a = input()
+            print("b:",end=' ')
+            b = input()
+
+            print("Wybierz kryterium zatrzymania algorytmu")
+            print("1) |f(x)| < e.")
+            print("2) Osiągnięcie zadanej liczby iteracji.")
+            warunek = input()
+
+            # r.wykres_funkcji()
+            print("Naciśnij klawisz aby kontynuować")
+            input()
 
 
 
-
-epsilon = 0.01
-
-
-funkcja1 = [2,5,0]
-pochodna1 = [4,5]
 
 
 if __name__ == '__main__':
-    object = sk.Obliczenia(funkcja1,1,0.01)
-    print(object.bisekcja(pochodna1,-122,5,epsilon))
-    print("wybierz funkcje:")
-    print("1: ")
-    print("2: ")
-    print("3: ")
+   # print()
+    menu()
+
 
 
