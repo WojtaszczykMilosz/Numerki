@@ -20,13 +20,13 @@ def wykładnicza_pochodna2(x):
     return (np.log(2)**2) * (2 ** x)
 
 def złożenie(x):
-    return 3 ** np.sin(x) - 2
+    return (3 ** np.sin(x)) - 2
 
 def złożenie_pochodna(x):
     return np.log(3) * (3 ** np.sin(x)) * np.cos(x)
 
 def złożenie_pochodna2(x):
-    return (np.log(3) ** 2) * (3 ** np.sin(x)) * (np.cos(x) ** 2) - np.log(3) * (3 ** np.sin(x)) * np.sin(x)
+    return ((np.log(3) ** 2) * (3 ** np.sin(x)) * (np.cos(x) ** 2)) - (np.log(3) * (3 ** np.sin(x)) * np.sin(x))
 
 class Wielomian:
     def __init__(self,tab):

@@ -1,19 +1,5 @@
 class Obliczenia:
 
-
-
-    def ustaw_kryterium(self):
-        if self.kryterium:
-            self.warunek = self.dokladnosc
-        else:
-            self.warunek = self.iteracje
-
-    def dokladnosc(self,x):
-        return abs(self.horner(x,self.tab)) < self.wartosc
-
-    def iteracje(self, i):
-        return i > self.wartosc
-
     @staticmethod
     def horner(x, tab):
         wartosc = tab[0]
@@ -22,17 +8,27 @@ class Obliczenia:
             wartosc = wartosc*x + tab[a]
         return wartosc
 
-    def bisekcja(self,funckja,a,b,epsilon):
-        if self.horner(a, funckja) * self.horner(b, funckja) > 0:
+    def bisekcja(self,funkcja,a,b,epsilon,iteracja):
+        if funkcja(a) * funkcja(b) > 0:
             return None
-        x = (a + b) / 2
-        while abs(self.horner(x, funckja)) > epsilon:
+
+        if iteracja != 0:
+            self.bisekcjaiteracje = iteracja
+
+        while True:
+
             x = (a + b) / 2
-            if self.horner(x, funckja) * self.horner(a, funckja) < 0:
+            iteracja -= 1
+            if abs(funkcja(x)) < epsilon:
+                self.bisekcjaiteracje = abs(iteracja)
+                return x
+            elif iteracja == 0:
+                return x
+
+            if funkcja(x) * funkcja(a) < 0:
                 b = x
             else:
                 a = x
-        return round(x,3)
 
 
     def styczne(self,funkcja,pochodna,pochodna2,a,b,epsilon,iteracja):
@@ -44,12 +40,17 @@ class Obliczenia:
             xN = b
         else:
             return None
+        if iteracja != 0:
+            self.iteracjestyczne = iteracja
         while True:
             xN1 = xN - (funkcja(xN)/pochodna(xN))
             iteracja -= 1
             if abs(funkcja(xN1)) < epsilon:
+
+                self.iteracjestyczne = abs(iteracja)
                 return xN1
             elif iteracja == 0:
                 return xN1
             else:
                 xN = xN1
+
