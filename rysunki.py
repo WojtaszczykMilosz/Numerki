@@ -24,5 +24,5 @@ def wykres_funkcji(funkcja,a,b,x1,x2):
     plt.tight_layout()
     plt.show()
 
-wykres_funkcji([2,1,3],2,3,2.5,2)
+
 

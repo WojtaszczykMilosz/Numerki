@@ -1,6 +1,7 @@
 import skrypty as sk
 import numpy as np
 import rysunki as r
+import funkcje as fun
 
 dict = {"1":sk.Obliczenia.horner}
 def menu():
@@ -40,7 +41,9 @@ def menu():
 
 if __name__ == '__main__':
    # print()
-    menu()
+    #menu()
+    obiekt = sk.Obliczenia()
+    print(obiekt.styczne(fun.złożenie,fun.złożenie_pochodna,fun.złożenie_pochodna2,2.3,2.9,0.001,0))
 
 
 
