@@ -3,9 +3,9 @@ import numpy as np
 import skrypty as sk
 
 def wykres_funkcji(funkcja,a,b,x1,x2):
-    help = np.linspace(a,b)
+    help = np.linspace(a,b,1000)
     wartosci = funkcja(help)
-    help2 = np.linspace(wartosci.min(),wartosci.max())
+    help2 = np.linspace(wartosci.min(),wartosci.max(),1000)
 
     zero = np.zeros((len(help),1))
 
