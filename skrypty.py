@@ -39,10 +39,19 @@ class Obliczenia:
         return round(x,3)
 
 
-    def styczne(self,funckja,pochodna,a,b,epsilon):
-        if self.horner(a, funckja) * self.horner(b, funckja) > 0:
+    def styczne(self,funkcja,pochodna,pochodna2,a,b,epsilon,iteracja):
+        if funkcja(a) * funkcja(b) > 0:
             return None
-        x = (a + b) / 2
-        while abs(self.horner(x, funckja)) > epsilon:
-            x = x - self.horner(x, funckja) / self.horner(x, pochodna)
-        return round(x,3)
+        if pochodna(a) * pochodna2(a) > 0:
+            xN = a
+        elif pochodna(b) * pochodna2(b) > 0:
+            xN = b
+        else:
+            return None
+        while True:
+            xN1 = xN - (pochodna(xN)/pochodna2(xN))
+
+            if xN1 < epsilon:
+                return xN1
+            else:
+                xN = xN1
