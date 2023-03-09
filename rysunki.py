@@ -4,10 +4,7 @@ import skrypty as sk
 
 def wykres_funkcji(funkcja,a,b,x1,x2):
     help = np.linspace(a,b)
-
-
     wartosci = sk.Obliczenia.horner(help,funkcja)
-
     help2 = np.linspace(wartosci.min(),wartosci.max())
     z = np.zeros((len(wartosci), 1))
     z += x1
@@ -24,5 +21,5 @@ def wykres_funkcji(funkcja,a,b,x1,x2):
     plt.tight_layout()
     plt.show()
 
-wykres_funkcji([2,1,3],2,3,2.5,2)
+# wykres_funkcji([1,1,3],-2,3,2.5,2)
 
