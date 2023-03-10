@@ -13,7 +13,7 @@ def wczytaj_wielomian():
     print("Podaj stopien wielomianu: ", end='')
     stopien = input()
     tab = []
-    for i in range(int(stopien)):
+    for i in range(int(stopien) + 1):
         print(f"Podaj wartosc {i + 1} wspolczynnika: ", end=' ')
         wsp = input()
         wsp = int(wsp)
@@ -69,11 +69,19 @@ def menu():
             elif warunek == '2':
                 epsilon = 0
                 iteracja = float(wartosc)
-            # x1 = sk.Obliczenia.bisekcja(funkcje[0], a, b, epsilon, iteracja)
             ob = sk.Obliczenia()
-            # x2 = ob.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, epsilon, iteracja)
+            x1 = ob.bisekcja(funkcje[0], a, b, epsilon, iteracja)
+            x2 = ob.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, epsilon, iteracja)
 
-            r.wykres_funkcji(funkcje[1],a,b,0,0)
+            r.wykres_funkcji(funkcje[0],a,b,x1,x2)
+            if x1 != None:
+                print("METODA BISEKCJI")
+                print("Wartość znaleziona: " + str(x1))
+                print("Ilośc potrzebnych iteracji: " + str(ob.bisekcjaiteracje))
+            if x2 != None:
+                print("METODA STYCZNYCH")
+                print("Wartość znaleziona: " + str(x2))
+                print("Ilośc potrzebnych iteracji: " + str(ob.iteracjestyczne))
 
 
 
@@ -81,9 +89,14 @@ def menu():
 
 if __name__ == '__main__':
    # print()
-    #menu()
-    obiekt = sk.Obliczenia()
-    print(obiekt.styczne(fun.złożenie,fun.złożenie_pochodna,fun.złożenie_pochodna2,2.3,2.9,0.001,0))
+    menu()
+   # ob = sk.Obliczenia()
+   # wielomian = fun.Wielomian([3,6,-4])
+   # pochodna = fun.Wielomian(wielomian.pochodna())
+   # x1 = ob.bisekcja(wielomian.wartosc,-1,3,0.01,0)
+   # x2 = ob.styczne(wielomian.wartosc,pochodna.wartosc,pochodna.pochodna_wartosc,-1,1,0.01,0)
+   # r.wykres_funkcji(wielomian.wartosc, -1, 1, x1, x2)
+
 
 
 

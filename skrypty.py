@@ -10,6 +10,7 @@ class Obliczenia:
 
     def bisekcja(self,funkcja,a,b,epsilon,iteracja):
         if funkcja(a) * funkcja(b) > 0:
+            self.bisekcjaiteracje = None
             return None
 
         if iteracja != 0:
@@ -33,18 +34,23 @@ class Obliczenia:
 
     def styczne(self,funkcja,pochodna,pochodna2,a,b,epsilon,iteracja):
         if funkcja(a) * funkcja(b) > 0:
+            self.iteracjestyczne = None
             return None
         if pochodna(a) * pochodna2(a) > 0:
             xN = a
         elif pochodna(b) * pochodna2(b) > 0:
             xN = b
         else:
+            self.iteracjestyczne = None
             return None
         if iteracja != 0:
             self.iteracjestyczne = iteracja
         while True:
             xN1 = xN - (funkcja(xN)/pochodna(xN))
             iteracja -= 1
+            if xN1 > b or xN1 < a:
+                self.iteracjestyczne = None
+                return None
             if abs(funkcja(xN1)) < epsilon:
 
                 self.iteracjestyczne = abs(iteracja)
