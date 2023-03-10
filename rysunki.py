@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import skrypty as sk
 
-def wykres_funkcji(funkcja,a,b,x1,x2):
+def wykres_funkcji(funkcja,pochodna,pochodna2,a,b,x1,x2):
     help = np.linspace(a,b,1000)
     wartosci = funkcja(help)
     help2 = np.linspace(wartosci.min(),wartosci.max(),1000)
@@ -15,6 +15,8 @@ def wykres_funkcji(funkcja,a,b,x1,x2):
     y += x2
     plt.figure(figsize=(10,6))
     plt.plot(help,wartosci,label='zadana funkcja')
+    plt.plot(help,pochodna(help),color='green',label='pierwsza pochodna')
+    plt.plot(help,pochodna2(help),color='orange',label='druga pochodna')
     plt.plot(z,help2,linestyle = 'dashed',color='black',label='miejsce zerowe uzyskane metodą bisekcji')
     plt.plot(y,help2, linestyle='dashed', color='red',label='miejsce zerowe uzyskane metodą stycznych')
     plt.plot(help,zero,color='black')

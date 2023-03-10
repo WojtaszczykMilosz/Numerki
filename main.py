@@ -73,7 +73,8 @@ def menu():
             x1 = ob.bisekcja(funkcje[0], a, b, epsilon, iteracja)
             x2 = ob.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, epsilon, iteracja)
 
-            r.wykres_funkcji(funkcje[0],a,b,x1,x2)
+            if x1 != None and x2 != None:
+                r.wykres_funkcji(funkcje[0],funkcje[1],funkcje[2],a,b,x1,x2)
             if x1 != None:
                 print("METODA BISEKCJI")
                 print("Wartość znaleziona: " + str(x1))
@@ -82,7 +83,8 @@ def menu():
                 print("METODA STYCZNYCH")
                 print("Wartość znaleziona: " + str(x2))
                 print("Ilośc potrzebnych iteracji: " + str(ob.iteracjestyczne))
-
+            else:
+                print("METODA STYCZNYCH NIE ZNALAZŁA ROZWIĄZANIA")
 
 
 
@@ -90,13 +92,13 @@ def menu():
 if __name__ == '__main__':
    # print()
     menu()
-   # ob = sk.Obliczenia()
+    #ob = sk.Obliczenia()
    # wielomian = fun.Wielomian([3,6,-4])
    # pochodna = fun.Wielomian(wielomian.pochodna())
    # x1 = ob.bisekcja(wielomian.wartosc,-1,3,0.01,0)
    # x2 = ob.styczne(wielomian.wartosc,pochodna.wartosc,pochodna.pochodna_wartosc,-1,1,0.01,0)
    # r.wykres_funkcji(wielomian.wartosc, -1, 1, x1, x2)
-
+    #print(ob.styczne(fun.cosinus,fun.cosinus_pochodna,fun.cosinus_pochodna2,0,3,0.01,0))
 
 
 

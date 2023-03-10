@@ -50,6 +50,7 @@ class Obliczenia:
             iteracja -= 1
             if xN1 > b or xN1 < a:
                 self.iteracjestyczne = None
+
                 return None
             if abs(funkcja(xN1)) < epsilon:
 
