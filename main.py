@@ -73,18 +73,20 @@ def menu():
             x1 = ob.bisekcja(funkcje[0], a, b, epsilon, iteracja)
             x2 = ob.styczne(funkcje[0],funkcje[1],funkcje[2], a, b, epsilon, iteracja)
 
-            if x1 != None and x2 != None:
-                r.wykres_funkcji(funkcje[0],funkcje[1],funkcje[2],a,b,x1,x2)
             if x1 != None:
                 print("METODA BISEKCJI")
                 print("Wartość znaleziona: " + str(x1))
                 print("Ilośc potrzebnych iteracji: " + str(ob.bisekcjaiteracje))
+            else:
+                print("METODA BISEKCJI NIE ZNALAZŁA ROZWIĄZANIA")
             if x2 != None:
                 print("METODA STYCZNYCH")
                 print("Wartość znaleziona: " + str(x2))
                 print("Ilośc potrzebnych iteracji: " + str(ob.iteracjestyczne))
             else:
                 print("METODA STYCZNYCH NIE ZNALAZŁA ROZWIĄZANIA")
+
+            r.wykres_funkcji(funkcje[0], funkcje[1], funkcje[2], a, b, x1, x2)
 
 
 

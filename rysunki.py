@@ -9,16 +9,22 @@ def wykres_funkcji(funkcja,pochodna,pochodna2,a,b,x1,x2):
 
     zero = np.zeros((len(help),1))
 
-    z = np.zeros((len(wartosci), 1))
-    z += x1
-    y = np.zeros((len(wartosci), 1))
-    y += x2
+    if x1 != None:
+        z = np.zeros(len(wartosci))
+        z += x1
+        plt.plot(z, help2, linestyle='dashed', color='black', label='miejsce zerowe uzyskane metodą bisekcji')
+
+    if x2 != None:
+        y = np.zeros(len(wartosci))
+        y += x2
+        plt.plot(y, help2, linestyle='dashed', color='red', label='miejsce zerowe uzyskane metodą stycznych')
+
     plt.figure(figsize=(10,6))
     plt.plot(help,wartosci,label='zadana funkcja')
     plt.plot(help,pochodna(help),color='green',label='pierwsza pochodna')
     plt.plot(help,pochodna2(help),color='orange',label='druga pochodna')
-    plt.plot(z,help2,linestyle = 'dashed',color='black',label='miejsce zerowe uzyskane metodą bisekcji')
-    plt.plot(y,help2, linestyle='dashed', color='red',label='miejsce zerowe uzyskane metodą stycznych')
+
+
     plt.plot(help,zero,color='black')
     plt.xlabel("OŚ X")
     plt.ylabel("OŚ Y")
