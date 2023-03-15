@@ -8,6 +8,7 @@ def wykres_funkcji(funkcja,pochodna,pochodna2,a,b,x1,x2):
     help2 = np.linspace(wartosci.min(),wartosci.max(),1000)
 
     zero = np.zeros((len(help),1))
+    plt.figure(figsize=(10, 6))
 
     if x1 != None:
         z = np.zeros(len(wartosci))
@@ -19,7 +20,7 @@ def wykres_funkcji(funkcja,pochodna,pochodna2,a,b,x1,x2):
         y += x2
         plt.plot(y, help2, linestyle='dashed', color='red', label='miejsce zerowe uzyskane metodą stycznych')
 
-    plt.figure(figsize=(10,6))
+
     plt.plot(help,wartosci,label='zadana funkcja')
     plt.plot(help,pochodna(help),color='green',label='pierwsza pochodna')
     plt.plot(help,pochodna2(help),color='orange',label='druga pochodna')
