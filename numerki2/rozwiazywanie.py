@@ -52,7 +52,7 @@ class GaussSeidl:
 
         if (self.zbieznosc(wspl)):
             warunek = True
-            while (warunek):
+            while (warunek and iteracje > -50):
                 iteracje -= 1
                 self.iteracja(wspl, x, b)
                 if(iteracje == 0):
