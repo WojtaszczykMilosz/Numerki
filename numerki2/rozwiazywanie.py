@@ -28,14 +28,19 @@ class GaussSeidl:
                 return False
         return True
 
-    def zamienWiersze(self,wspl):
+    def zamienWiersze(self,wspl,b):
 
         for i in range(wspl.shape[0]):
             index = np.argmax(wspl[i])
             a = np.copy(wspl[i])
-            b = np.copy(wspl[index])
-            wspl[i] = b
+            c = np.copy(wspl[index])
+            wspl[i] = c
             wspl[index] = a
+
+            a = b[i]
+            c = b[index]
+            b[i] = c
+            b[index] = a
 
         return wspl
 
@@ -47,7 +52,7 @@ class GaussSeidl:
         x = np.zeros(wspl.shape[0], dtype="float")
 
         if(not self.zbieznosc(wspl)):
-            wspl = self.zamienWiersze(wspl)
+            wspl = self.zamienWiersze(wspl,b)
 
 
         if (self.zbieznosc(wspl)):
