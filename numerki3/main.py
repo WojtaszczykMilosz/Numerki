@@ -1,3 +1,22 @@
+import rysunki as rysuj
+import funkcje as fun
+#
+dict = {"1": fun.liniowa,
+        "2": fun.modulX,
+        "4": fun.trygonometryczna}
+
+
+def wczytaj_wielomian():
+    print("Podaj stopien wielomianu: ", end='')
+    stopien = input()
+    tab = []
+    for i in range(int(stopien) + 1):
+        print(f"Podaj wartosc {i + 1} wspolczynnika: ", end=' ')
+        wsp = input()
+        wsp = int(wsp)
+        tab.append(wsp)
+    return tab
+
 def menu():
     wybor = 1
     while wybor != '0':
@@ -15,26 +34,29 @@ def menu():
             wybor = '0'
 
         if wybor != '0':
-            if wybor == '4':
+            if wybor == '3':
                 tab = wczytaj_wielomian()
                 wielomian = fun.Wielomian(tab)
-                pochodna = fun.Wielomian(wielomian.pochodna())
-                funkcje = (wielomian.wartosc,pochodna.wartosc,pochodna.pochodna_wartosc)
+
+                funkcja = (wielomian.obliczWartosc)
 
             else:
-                funkcje = dict[wybor]
-
-
-
+                funkcja = dict[wybor]
 
             print("Podaj przedział [a,b] na którym poszukiwane jest miejsce zerowe")
-            print("a:",end=' ')
+            print("a:", end=' ')
             a = float(input())
-            print("b:",end=' ')
+
+            print("b:", end=' ')
             b = float(input())
 
 
+            print("Podaj liczbę węzłów")
+            iloscWezlow = int(input())
+
+            rysuj.wykres_funkcji(funkcja,a,b,iloscWezlow)
 
 
 
-
+if __name__ == '__main__':
+    menu()

@@ -4,9 +4,6 @@ import rysunki as r
 import numpy as np
 import matplotlib.pyplot as plt
 
-dict = {"1": (fun.cosinus,fun.cosinus_pochodna,fun.cosinus_pochodna2),
-        "2": (fun.wykładnicza,fun.wykładnicza_pochodna,fun.wykładnicza_pochodna2),
-        "3": (fun.złożenie,fun.złożenie_pochodna,fun.złożenie_pochodna2)}
 
 
 

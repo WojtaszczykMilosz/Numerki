@@ -1,16 +1,26 @@
 import numpy as np
-import obliczenia as ob
 
-class Liniowa:
-    def __init__(self,a,b):
-        self.a = a
-        self.b = b
-    def obliczWartosc(self,x):
-        return self.a*x + self.b
 
-class ModulX:
-    def obliczWartosc(self,x):
-        return abs(x)
+def horner(x, tab):
+    wartosc = tab[0]
+
+    for a in range(1, len(tab)):
+        wartosc = wartosc * x + tab[a]
+    return wartosc
+
+
+
+def liniowa(x):
+    return x*5
+
+def trygonometryczna(x):
+    return np.sin(x) + np.cos(x)
+
+def zlozenie(x):
+    return np.cos(2 * x) - (1.5 * x)
+
+def modulX(x):
+    return abs(x)
 
 
 class Wielomian:
@@ -18,13 +28,4 @@ class Wielomian:
         self.tab = tab
 
     def obliczWartosc(self,x):
-        return ob.horner(x,self.tab)
-
-    def obliczPochodna(self):
-        pochodna = [self.tab[0] * (len(self.tab) - 1)]
-        for i in range(1, len(self.tab) - 1):
-            pochodna.append(self.tab[i] * (len(self.tab) - i - 1))
-        return pochodna
-
-    def obliczWartoscPochodnej(self, x):
-        return  ob.horner(x,self.obliczPochodna())
+        return horner(x,self.tab)

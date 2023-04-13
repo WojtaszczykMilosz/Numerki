@@ -1,8 +1,7 @@
 import numpy as np
 import skrypty as sk
 
-def cosinus(x):
-    return np.cos(2 * x) - (1.5 * x)
+
 
 def cosinus_pochodna(x):
     return (-2 * np.sin(2 * x)) - 1.5
