@@ -1,3 +1,5 @@
+import time
+from scipy.interpolate import lagrange
 import numpy as np
 
 
@@ -19,6 +21,7 @@ class InterpolacjaLagrange:
                 mnozenie /= self.wezly[i] - self.wezly[j]
 
             wynik += self.wartosciWezlow[i] * mnozenie
+
         return wynik
 
     def ObliczWartoscInterpolacjiSzybkie(self, x):
@@ -37,6 +40,7 @@ class InterpolacjaLagrange:
             wielomianW *= x - self.wezly[i]
             wynik += mnozenie
         wynik *= wielomianW
+
         return wynik
 
 

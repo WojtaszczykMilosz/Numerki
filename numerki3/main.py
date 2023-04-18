@@ -11,7 +11,7 @@ def wczytaj_wielomian():
     stopien = input()
     tab = []
     for i in range(int(stopien) + 1):
-        print(f"Podaj wartosc {i + 1} wspolczynnika: ", end=' ')
+        print(f"Podaj wartosc {int(stopien) + 1 - i} wspolczynnika: ", end=' ')
         wsp = input()
         wsp = int(wsp)
         tab.append(wsp)

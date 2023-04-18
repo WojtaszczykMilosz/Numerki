@@ -1,3 +1,5 @@
+import time
+
 import matplotlib.pyplot as plt
 import interpolacja as inter
 import numpy as np
@@ -6,7 +8,7 @@ import numpy as np
 def wykres_funkcji(funkcja, a, b, iloscWezlow):
 
     x = inter.ObliczWezlyCzebyszewa(a, b, iloscWezlow)
-    y = funkcja(x)
+    y = np.round(funkcja(x),5)
 
 
     Lagrange = inter.InterpolacjaLagrange(x, y)
@@ -23,18 +25,28 @@ def wykres_funkcji(funkcja, a, b, iloscWezlow):
 
     help = np.linspace(a, b, 10000)
     wartoscifunkcji = np.round(funkcja(help),5)
-    #wartosciInterpolacji = np.round(interpolacja(help),5)
+
     wartosciInterpolacji2 = []
+    start = time.time()
     for i in range(len(help)):
         wartosciInterpolacji2.append(np.round(interpolacjaSzybsza(help[i]),5))
 
-    #np.round(y,5)
+    end = time.time()
+
+    print(f"Interpolacja nowa {end - start}")
+    start = time.time()
+    wartosciInterpolacji = []
+    for i in range(len(help)):
+        wartosciInterpolacji.append(np.round(interpolacja(help[i]), 5))
+
+    end = time.time()
+    print(f"Interpolacja stara {end-start}")
     zero = np.zeros((len(help)))
     plt.figure(figsize=(10, 6))
 
 
     plt.plot(help, wartoscifunkcji,label='zadana funkcja')
-    #plt.plot(help, wartosciInterpolacji, color='green', label='interpolacja')
+    plt.plot(help, wartosciInterpolacji, color='green', label='interpolacja')
     plt.plot(help, wartosciInterpolacji2, color='orange', label='interpolacjaSzybsza')
 
     plt.plot(x, y, 'rd', label='węzły')
