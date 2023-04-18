@@ -17,7 +17,7 @@ def trygonometryczna(x):
     return np.sin(x) + np.cos(x)
 
 def zlozenie(x):
-    return np.cos(2 * x) - (1.5 * x)
+    return np.cos(np.sin(2 * x))
 
 def modulX(x):
     return abs(x)

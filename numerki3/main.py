@@ -3,7 +3,8 @@ import funkcje as fun
 #
 dict = {"1": fun.liniowa,
         "2": fun.modulX,
-        "4": fun.trygonometryczna}
+        "4": fun.trygonometryczna,
+        "5": fun.zlozenie}
 
 
 def wczytaj_wielomian():
@@ -25,6 +26,7 @@ def menu():
         print("2: |x|")
         print("3: wielomian")
         print("4: trygonometryczna")
+        print("5: zlozenie")
         print("0: wyjscie")
         wybor = input()
 
