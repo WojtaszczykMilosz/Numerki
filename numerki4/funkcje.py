@@ -16,8 +16,8 @@ def liniowa(x):
 def trygonometryczna(x):
     return np.sin(x) + np.cos(x)
 
-def zlozenie(x):
-    return np.cos(np.sin(2 * x))
+def trygonometryczna2(x):
+    return np.cos(20*np.sqrt(x))
 
 def modulX(x):
     return abs(x)

@@ -4,7 +4,7 @@ import kwadratury as kw
 dict = {"1": fun.liniowa,
         "2": fun.modulX,
         "4": fun.trygonometryczna,
-        "5": fun.zlozenie}
+        "5": fun.trygonometryczna2}
 
 
 def wczytaj_wielomian():
@@ -26,8 +26,8 @@ def menu():
         print("1: liniowa")
         print("2: |x|")
         print("3: wielomian")
-        print("4: trygonometryczna")
-        print("5: zlozenie")
+        print("4: sin(x) + cos(x)")
+        print("5: cos(20sqrt(x))")
         print("0: wyjscie")
         wybor = input()
 
