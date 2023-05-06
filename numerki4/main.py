@@ -57,7 +57,7 @@ def menu():
             dokladnosc = float(input())
 
             ileWezlow = 0
-            while (ileWezlow < 2) or (ileWezlow > 5):
+            while (ileWezlow < 2) or (ileWezlow > 100):
                 print("Podaj ilosc wezlow dla kwadratury Gaussa-Legendre'a")
                 ileWezlow = int(input())
 
@@ -65,9 +65,10 @@ def menu():
             leg = kw.Legendre(a, b)
 
             print(f"Wartości calki na przedziale [{a}, {b}) dla wybranej funkcji obliczone przy pomocy kwadratur wynoszą: ")
-
-            print(f"Newton-Cotes: {newton.obliczKwadrature(funkcja)}, dokladnosc - {dokladnosc}")
-            print(f"Gauss-Legendre: {leg.obliczKwadrature(funkcja,ileWezlow)}, ilosc wezlow - {ileWezlow}")
+            wynik1, podprzedzialy, czas1 = newton.obliczKwadrature(funkcja)
+            wynik2, czas2 = leg.obliczKwadrature(funkcja,ileWezlow)
+            print(f"Newton-Cotes: {wynik1}, dokladnosc - {dokladnosc}, ilosc podprzedzialow - {podprzedzialy}, czas - {czas1}")
+            print(f"Gauss-Legendre: {wynik2}, ilosc wezlow - {ileWezlow}, czas - {czas2}")
 
 if __name__ == '__main__':
     menu()

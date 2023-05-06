@@ -1,4 +1,5 @@
-import numpy as np
+import operacjePlikowe as op
+import time
 
 class NewtonCotes:
     def __init__(self, a, b, dokladnosc):
@@ -7,6 +8,7 @@ class NewtonCotes:
         self.dokladnosc = dokladnosc
 
     def obliczKwadrature(self, funkcja):
+        start = time.time()
         iloscPodprzedzialow = 2
         staryWynik = 0
         while True:
@@ -18,8 +20,8 @@ class NewtonCotes:
             wynik *= 1 / 3 * self.h
 
             if abs(staryWynik - wynik) < self.dokladnosc:
-                print(iloscPodprzedzialow)
-                return wynik
+                end = time.time()
+                return wynik, iloscPodprzedzialow, end - start
 
             iloscPodprzedzialow *= 2
             staryWynik = wynik
@@ -38,20 +40,10 @@ class Legendre:
     def __init__(self, a, b):
         self.a = a
         self.b = b
-        self.pierwiastki = [[-np.sqrt(3)/3,np.sqrt(3)/3],
-                            [-np.sqrt(15)/5, 0, np.sqrt(15)/5],
-                            [-np.sqrt(525 + 70 * np.sqrt(30))/35,-np.sqrt(525 - 70 * np.sqrt(30))/35,
-                             np.sqrt(525 - 70 * np.sqrt(30))/35, np.sqrt(525 + 70 * np.sqrt(30))/35],
-                            [-np.sqrt(245 + 14 * np.sqrt(70)) / 21, -np.sqrt(245 - 14 * np.sqrt(70)) / 21, 0,
-                            np.sqrt(245 - 14 * np.sqrt(70)) / 21, np.sqrt(245 + 14 * np.sqrt(70)) / 21]]
-        self.wspolczynniki = [[1,1],
-                              [5/9,8/9,5/9],
-                              [(18 - np.sqrt(30))/36, (18 + np.sqrt(30))/36, (18 + np.sqrt(30))/36, (18 - np.sqrt(30))/36],
-                              [(322 - 13 * np.sqrt(70)) / 900, (322 + 13 * np.sqrt(70)) / 900, 128/225,
-                               (322 + 13 * np.sqrt(70)) / 900, (322 - 13 * np.sqrt(70)) / 900]
-                              ]
+        self.wspolczynniki, self.pierwiastki = op.wczytajDane()
 
     def obliczKwadrature(self, funkcja, ileWezlow):
+        start = time.time()
         wynik = 0
 
         for x in range(ileWezlow):
@@ -59,7 +51,8 @@ class Legendre:
             wynik += self.wspolczynniki[ileWezlow-2][x] * \
                      self.przeskalowanaWartoscFunkcji(funkcja,self.pierwiastki[ileWezlow - 2][x])
 
-        return wynik
+        end = time.time()
+        return wynik, end - start
 
     def przeskalowanaWartoscFunkcji(self, funkcja, t):
         x = ((self.b - self.a) * t + self.a + self.b) / 2
