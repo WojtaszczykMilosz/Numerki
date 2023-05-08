@@ -1,6 +1,7 @@
 import funkcje as fun
 import kwadratury as kw
 
+
 dict = {"1": fun.liniowa,
         "2": fun.modulX,
         "4": fun.trygonometryczna,
@@ -69,6 +70,7 @@ def menu():
             wynik2, czas2 = leg.obliczKwadrature(funkcja,ileWezlow)
             print(f"Newton-Cotes: {wynik1}, dokladnosc - {dokladnosc}, ilosc podprzedzialow - {podprzedzialy}, czas - {czas1}")
             print(f"Gauss-Legendre: {wynik2}, ilosc wezlow - {ileWezlow}, czas - {czas2}")
+
 
 if __name__ == '__main__':
     menu()

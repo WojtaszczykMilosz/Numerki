@@ -1,6 +1,7 @@
 import numpy as np
 
 
+
 def horner(x, tab):
     wartosc = tab[0]
 
