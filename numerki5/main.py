@@ -1,5 +1,6 @@
 import rysowanie as rysuj
 import funkcje as fun
+
 #
 dict = {"1": fun.liniowa,
         "2": fun.modulX,
@@ -17,6 +18,7 @@ def wczytaj_wielomian():
         wsp = int(wsp)
         tab.append(wsp)
     return tab
+
 
 def menu():
     wybor = 1
@@ -58,8 +60,7 @@ def menu():
             print("Podaj liczbę węzłów")
             iloscWezlow = int(input())
 
-            rysuj.wykres_funkcji(funkcja,a,b,iloscWezlow)
-
+            rysuj.rysujWartosci(stopienWielomianu, a, b, funkcja, iloscWezlow)
 
 
 if __name__ == '__main__':

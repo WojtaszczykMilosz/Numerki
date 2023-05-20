@@ -57,6 +57,9 @@ class Aproksymacja:
             self.Wielomiany.append(WielomianLegendre(i))
 
 
+    # def obliczBlad(self):
+
+
     def obliczWartoscAproksymacji(self, funkcja, iloscWezlow, x):
         self.obliczWspolczynniki(funkcja,iloscWezlow)
         wynik = 0

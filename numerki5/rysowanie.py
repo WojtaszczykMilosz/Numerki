@@ -15,4 +15,3 @@ def rysujWartosci(stopien, a, b, funkcja, iloscWezlow):
     plt.plot(x, y, c='b')
     plt.show()
 
-rysujWartosci(3,-1,1,lambda x:x**3,100)
