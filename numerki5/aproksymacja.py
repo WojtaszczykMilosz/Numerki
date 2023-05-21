@@ -107,7 +107,7 @@ class Aproksymacja:
 
 
     def obliczWspolczynniki(self, funkcja, iloscWezlow):
-        kwadratura = kw.KwadraturaLegendre(-1, 1)
+        kwadratura = kw.KwadraturaLegendre(self.a, self.b)
         self.wspolczynniki_C = []
         for iteracja in range(self.stopienWielomianu + 1):
             c = kwadratura.obliczKwadrature(lambda x: self.Wielomiany[iteracja].obliczWartosc(x) * funkcja(x),
