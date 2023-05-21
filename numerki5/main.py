@@ -54,11 +54,13 @@ def menu():
             print("b:", end=' ')
             b = float(input())
 
+            print("Podaj liczbę węzłów")
+            iloscWezlow = int(input())
+
             print("Podaj stopien wielomianu aproksymujacego - Legendre'a")
             stopienWielomianu = int(input())
 
-            print("Podaj liczbę węzłów")
-            iloscWezlow = int(input())
+
 
             rysuj.rysujWartosci(stopienWielomianu, a, b, funkcja, iloscWezlow)
 

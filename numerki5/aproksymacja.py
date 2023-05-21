@@ -2,10 +2,10 @@ import funkcje as fun
 import numpy as np
 import kwadratura as kw
 
+
 class WielomianLegendre:
     def __init__(self, i):
         self.tab = np.flip(self.obliczWspolczynniki(i))
-
 
     def obliczWspolczynniki(self, i):
 
@@ -56,25 +56,67 @@ class Aproksymacja:
         for i in range(self.stopienWielomianu + 1):
             self.Wielomiany.append(WielomianLegendre(i))
 
+    def obliczBlad(self, funkcja, iloscWezlow, x, y):
+        kwadratura = kw.KwadraturaLegendre(self.a, self.b)
+        wynik = kwadratura.obliczKwadrature(
+            lambda zmienna:np.square(funkcja(x) - y), iloscWezlow)
 
-    # def obliczBlad(self):
+        try:
+            wynik = wynik.sum()
+        except:
+            pass
 
+        return wynik
 
     def obliczWartoscAproksymacji(self, funkcja, iloscWezlow, x):
-        self.obliczWspolczynniki(funkcja,iloscWezlow)
+        self.obliczWspolczynniki(funkcja, iloscWezlow)
+        x = self.przeksztalcWartoscX(x)
         wynik = 0
         for i in range(self.stopienWielomianu + 1):
+
             wynik += self.wspolczynniki_C[i] * self.Wielomiany[i].obliczWartosc(x)
+
+
         return wynik
+
+    def obliczZDokladnoscia(self, funkcja, iloscWezlow, x, dokladnosc):
+        stopien = self.stopienWielomianu
+
+        i = 1
+        while True:
+            self.stopienWielomianu = i
+            if (i == len(self.Wielomiany)):
+                self.Wielomiany.append(WielomianLegendre(i))
+
+            wynik = self.obliczWartoscAproksymacji(funkcja, iloscWezlow,x)
+
+            if (self.obliczBlad(funkcja,iloscWezlow,x,wynik) < dokladnosc):
+                temp = self.stopienWielomianu
+                self.stopienWielomianu = stopien
+                return wynik, temp
+
+            i += 1
+
+
+
+
+
+
+
+
+
 
 
     def obliczWspolczynniki(self, funkcja, iloscWezlow):
-        kwadratura = kw.KwadraturaLegendre(self.a,self.b)
+        kwadratura = kw.KwadraturaLegendre(self.a, self.b)
         self.wspolczynniki_C = []
         for iteracja in range(self.stopienWielomianu + 1):
-            c = kwadratura.obliczKwadrature(lambda x: self.Wielomiany[iteracja].obliczWartosc(x) * funkcja(x), iloscWezlow)
+            c = kwadratura.obliczKwadrature(lambda x: self.Wielomiany[iteracja].obliczWartosc(x) * funkcja(x),
+                                            iloscWezlow)
+            c /= kwadratura.obliczKwadrature(lambda x: self.Wielomiany[iteracja].obliczWartosc(x) ** 2, iloscWezlow)
 
-            c /= kwadratura.obliczKwadrature(lambda x: self.Wielomiany[iteracja].obliczWartosc(x)**2, iloscWezlow)
             self.wspolczynniki_C.append(c)
 
+    def przeksztalcWartoscX(self, x):
+        return ((2 * x) - self.a - self.b) / (self.b - self.a)
 
