@@ -71,10 +71,13 @@ class Aproksymacja:
     def obliczWartoscAproksymacji(self, funkcja, iloscWezlow, x):
         self.obliczWspolczynniki(funkcja, iloscWezlow)
         x = self.przeksztalcWartoscX(x)
+
         wynik = 0
         for i in range(self.stopienWielomianu + 1):
 
             wynik += self.wspolczynniki_C[i] * self.Wielomiany[i].obliczWartosc(x)
+
+
 
 
         return wynik
@@ -85,12 +88,15 @@ class Aproksymacja:
         i = 1
         while True:
             self.stopienWielomianu = i
+
             if (i == len(self.Wielomiany)):
                 self.Wielomiany.append(WielomianLegendre(i))
 
             wynik = self.obliczWartoscAproksymacji(funkcja, iloscWezlow,x)
+            blad = self.obliczBlad(funkcja,iloscWezlow,x,wynik)
 
-            if (self.obliczBlad(funkcja,iloscWezlow,x,wynik) < dokladnosc):
+
+            if (blad < dokladnosc):
                 temp = self.stopienWielomianu
                 self.stopienWielomianu = stopien
                 return wynik, temp
@@ -100,15 +106,8 @@ class Aproksymacja:
 
 
 
-
-
-
-
-
-
-
     def obliczWspolczynniki(self, funkcja, iloscWezlow):
-        kwadratura = kw.KwadraturaLegendre(self.a, self.b)
+        kwadratura = kw.KwadraturaLegendre(-1, 1)
         self.wspolczynniki_C = []
         for iteracja in range(self.stopienWielomianu + 1):
             c = kwadratura.obliczKwadrature(lambda x: self.Wielomiany[iteracja].obliczWartosc(x) * funkcja(x),
@@ -120,3 +119,6 @@ class Aproksymacja:
     def przeksztalcWartoscX(self, x):
         return ((2 * x) - self.a - self.b) / (self.b - self.a)
 
+
+    def odwrocPrzeksztalcenie(self, y):
+        return (y * (self.b - self.a) + self.b + self.a) / 2

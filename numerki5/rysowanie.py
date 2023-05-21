@@ -11,8 +11,9 @@ def rysujWartosci(a, b, funkcja, iloscWezlow, stopien = 1, dokladnosc = None):
         y = aprox.obliczWartoscAproksymacji(funkcja,iloscWezlow,x)
     else:
         y,ile = aprox.obliczZDokladnoscia(funkcja, iloscWezlow, x, 0.1)
+        print(ile)
 
-    print(ile)
+
     plt.plot(x, y, c='r')
     y = funkcja(x)
     plt.plot(x, y, c='b')
