@@ -3,13 +3,16 @@ import numpy as np
 import aproksymacja as ap
 
 
-def rysujWartosci(stopien, a, b, funkcja, iloscWezlow):
+def rysujWartosci(a, b, funkcja, iloscWezlow, stopien = 1, dokladnosc = None):
     aprox = ap.Aproksymacja(stopien, a, b)
 
     x = np.linspace(a, b, 1000)
-    y,ile = aprox.obliczZDokladnoscia(funkcja, iloscWezlow, x, 0.1)
+    if (dokladnosc == None):
+        y = aprox.obliczWartoscAproksymacji(funkcja,iloscWezlow,x)
+    else:
+        y,ile = aprox.obliczZDokladnoscia(funkcja, iloscWezlow, x, 0.1)
 
-    print(y,ile)
+    print(ile)
     plt.plot(x, y, c='r')
     y = funkcja(x)
     plt.plot(x, y, c='b')
