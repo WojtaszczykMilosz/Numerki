@@ -50,12 +50,8 @@ def menu():
             else:
                 funkcja = dict[wybor]
 
-            print("Podaj przedział aproksymacji [a,b].")
-            print("a:", end=' ')
-            a = float(input())
 
-            print("b:", end=' ')
-            b = float(input())
+
 
             print("Podaj liczbę węzłów")
             iloscWezlow = int(input())
@@ -68,11 +64,11 @@ def menu():
             if tryb ==  "1":
                 print("Podaj stopien wielomianu aproksymujacego - Legendre'a")
                 stopienWielomianu = int(input())
-                rysuj.rysujWartosci(a, b, funkcja, iloscWezlow, stopienWielomianu)
+                rysuj.rysujWartosci(-1, 1, funkcja, iloscWezlow, stopienWielomianu)
             elif tryb == "2":
                 print("Podaj dokladnosc z jaka ma byc aproksymowana wybrana funkcja")
                 dok = float(input())
-                rysuj.rysujWartosci(a, b, funkcja, iloscWezlow, dokladnosc=dok)
+                rysuj.rysujWartosci(-1, 1, funkcja, iloscWezlow, dokladnosc=dok)
 
 
 

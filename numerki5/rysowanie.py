@@ -9,8 +9,9 @@ def rysujWartosci(a, b, funkcja, iloscWezlow, stopien = 1, dokladnosc = None):
     x = np.linspace(a, b, 1000)
     if (dokladnosc == None):
         y = aprox.obliczWartoscAproksymacji(funkcja,iloscWezlow,x)
+        print(aprox.obliczBlad(funkcja,iloscWezlow,x,y))
     else:
-        y,ile = aprox.obliczZDokladnoscia(funkcja, iloscWezlow, x, 0.1)
+        y,ile = aprox.obliczZDokladnoscia(funkcja, iloscWezlow, x, dokladnosc)
         print(ile)
 
 
