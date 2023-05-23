@@ -53,8 +53,8 @@ def menu():
 
 
 
-            print("Podaj liczbę węzłów")
-            iloscWezlow = int(input())
+            print("Podaj liczbę węzłów - 100")
+            iloscWezlow = 100
 
             print("Wybierz tryb:")
             print("1: Podawanie stopnia wielomianu")

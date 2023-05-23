@@ -38,7 +38,6 @@ class WielomianLegendre:
         tab.append(np.flip(self.tabs[i - 1]))
         tab.append(np.flip(self.tabs[i - 2]))
 
-        print(self.tabs)
         helptab = np.insert(tab[0] * (2 * i - 1), 0, 0)
         helptab2 = np.append(tab[1] * (i - 1), [0, 0])
 
@@ -93,16 +92,20 @@ class Aproksymacja:
         stopien = self.stopienWielomianu
 
         i = 1
+
         while True:
             self.stopienWielomianu = i
             self.Wielomian.dodajWielomian(i)
-            print(i)
-            print(self.Wielomian.tabs)
+
             wynik = self.obliczWartoscAproksymacji(funkcja, iloscWezlow,x)
             blad = self.obliczBlad(funkcja,iloscWezlow,x,wynik)
+            if (i == 1):
+                pierwszyblad = blad
+            print(f"{i} - {blad}")
 
-
-            if (blad < dokladnosc):
+            if blad < dokladnosc or blad > pierwszyblad:
+                if(blad > pierwszyblad):
+                    print("nie udalo sie znalezc aproksymacji o podanej dokladnosci")
                 temp = self.stopienWielomianu
                 self.stopienWielomianu = stopien
                 return wynik, temp
