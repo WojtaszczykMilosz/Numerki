@@ -24,8 +24,6 @@ def menu():
     wybor = 1
     while wybor != '0':
 
-
-
         print("Wybierz funkcje:")
         print("1: liniowa")
         print("2: |x|")
@@ -50,18 +48,16 @@ def menu():
             else:
                 funkcja = dict[wybor]
 
-
-
-
             print("Podaj liczbę węzłów - 100")
             iloscWezlow = 100
+
 
             print("Wybierz tryb:")
             print("1: Podawanie stopnia wielomianu")
             print("2: Obliczanie aproksymacji z dokladnoscia")
 
             tryb = input()
-            if tryb ==  "1":
+            if tryb == "1":
                 print("Podaj stopien wielomianu aproksymujacego - Legendre'a")
                 stopienWielomianu = int(input())
                 rysuj.rysujWartosci(-1, 1, funkcja, iloscWezlow, stopienWielomianu)
@@ -69,12 +65,6 @@ def menu():
                 print("Podaj dokladnosc z jaka ma byc aproksymowana wybrana funkcja")
                 dok = float(input())
                 rysuj.rysujWartosci(-1, 1, funkcja, iloscWezlow, dokladnosc=dok)
-
-
-
-
-
-
 
 
 if __name__ == '__main__':

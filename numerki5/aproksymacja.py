@@ -123,9 +123,12 @@ class Aproksymacja:
 
             c = kwadratura.obliczKwadrature(lambda x: self.Wielomian.obliczWartosc(x, iteracja) * funkcja(x),
                                             iloscWezlow)
-            c /= (1/(iteracja + 1 / 2))
+
+
+
+            c /= kwadratura.obliczKwadrature(lambda x: self.Wielomian.obliczWartosc(x, iteracja) **2,
+                                            iloscWezlow)
 
             self.wspolczynniki_C.append(c)
-
 
 

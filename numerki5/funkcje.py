@@ -19,7 +19,7 @@ def zlozenie(x):
     return np.cos(np.sin(2 * x))
 
 def modulX(x):
-    return abs(x)
+    return abs(-2*x )
 
 
 class Wielomian:

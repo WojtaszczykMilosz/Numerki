@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import aproksymacja as ap
-
+import kwadratura as kw
 
 def rysujWartosci(a, b, funkcja, iloscWezlow, stopien = 1, dokladnosc = None):
     aprox = ap.Aproksymacja(stopien, a, b)
